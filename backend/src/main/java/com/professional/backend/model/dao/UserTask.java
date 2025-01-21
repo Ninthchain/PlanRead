@@ -10,7 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity(name = "tasks")
@@ -27,7 +27,6 @@ public class UserTask {
     @JoinColumn(name = "priority_id", referencedColumnName = "id")
     private UserTaskPriority priority;
 
-    @OneToMany(mappedBy = "task")
-    @JoinColumn(name = "tag_id", nullable = true)
+    @ManyToMany
     private Set<UserTaskTag> tags;
 }
