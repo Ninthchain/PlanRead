@@ -1,8 +1,6 @@
-package com.professional.backend.model.dao;
+package com.professional.backend.model.dao.task;
 
 import java.util.Set;
-
-import com.professional.backend.model.dao.task.UserTask;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -3,8 +3,6 @@ package com.professional.backend.model.dao.task;
 import java.util.Set;
 import java.util.UUID;
 
-import com.professional.backend.model.dao.Tag;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

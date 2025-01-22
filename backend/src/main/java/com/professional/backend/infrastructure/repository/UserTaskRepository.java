@@ -4,10 +4,10 @@ import java.util.UUID;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.professional.backend.model.dao.UserTask;
-import com.professional.backend.model.dao.UserTaskTag;
+import com.professional.backend.model.dao.task.Tag;
+import com.professional.backend.model.dao.task.UserTask;
 
 public interface UserTaskRepository extends CrudRepository<UserTask, UUID> {
     UserTask findByName(String name);
-    UserTask findByTag(UserTaskTag tag);
+    UserTask findByTag(Tag tag);
 }
