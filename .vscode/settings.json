@@ -1,3 +1,7 @@
 {
-    "java.configuration.updateBuildConfiguration": "automatic"
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "editor.fontFamily": "JetBrains Mono", // Font Family
+    "editor.fontSize": 15, // Font Size
+    "editor.fontWeight": "bold", // Font Weight
+    "editor.fontLigatures": true, // Font ligatures
 }
