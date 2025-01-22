@@ -1,4 +1,4 @@
-package com.professional.backend.infrastructure.model.dao.user;
+package com.professional.backend.infrastructure.data.model.dao.user;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

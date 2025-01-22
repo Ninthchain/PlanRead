@@ -1,4 +1,4 @@
-package com.professional.backend.infrastructure.model.dao.task;
+package com.professional.backend.infrastructure.data.model.dao.task;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
