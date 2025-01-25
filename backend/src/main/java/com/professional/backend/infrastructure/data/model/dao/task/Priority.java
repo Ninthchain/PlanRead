@@ -10,8 +10,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity(name = "task_priorities")
-public class UserTaskPriority {
+@Entity(name = "priorities")
+public class Priority {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
