@@ -20,7 +20,10 @@ public class Book {
     private Long id;
 
     @Column
-    private String bookName;
+    private String name;
+
+    @Column
+    private String description;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "file_id", referencedColumnName = "id")
