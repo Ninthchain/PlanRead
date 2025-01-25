@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import lombok.Getter;
@@ -29,8 +30,13 @@ public class UserTask {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "priority_id", referencedColumnName = "id")
-    private UserTaskPriority priority;
+    private Priority priority;
 
     @ManyToMany
+    @JoinTable(
+        name = "task_tag",
+        joinColumns = @JoinColumn(name = "task_id"),
+        inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
     private Set<Tag> tags;
 }
