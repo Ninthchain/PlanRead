@@ -1,9 +1,12 @@
-package com.professional.backend.infrastructure.data.model.dao.user;
+package com.professional.backend.infrastructure.data.model.entity.user;
 
+import java.sql.Timestamp;
 import java.util.Set;
 import java.util.UUID;
 
-import com.professional.backend.infrastructure.data.model.dao.book.Book;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.professional.backend.infrastructure.data.model.entity.book.Book;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,4 +29,6 @@ public class User {
     @OneToMany
     @JoinColumn(name = "book_id", referencedColumnName = "id", nullable = true)
     private Set<Book> books;
+
+    
 }

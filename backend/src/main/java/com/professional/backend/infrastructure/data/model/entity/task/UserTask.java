@@ -1,4 +1,4 @@
-package com.professional.backend.infrastructure.data.model.dao.task;
+package com.professional.backend.infrastructure.data.model.entity.task;
 
 import java.util.Set;
 import java.util.UUID;
@@ -39,4 +39,5 @@ public class UserTask {
         inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
     private Set<Tag> tags;
+    
 }

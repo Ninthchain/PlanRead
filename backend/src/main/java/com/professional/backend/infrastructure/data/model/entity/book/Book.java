@@ -1,4 +1,4 @@
-package com.professional.backend.infrastructure.data.model.dao.book;
+package com.professional.backend.infrastructure.data.model.entity.book;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
