@@ -14,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +22,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity(name = "tasks")
-public class UserTask {
+public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -34,13 +35,15 @@ public class UserTask {
     @JoinColumn(name = "priority_id", referencedColumnName = "id")
     private Priority priority;
 
-    @ManyToMany(mappedBy = "tasks")
+    @ManyToMany
     @JoinTable(name = "task_tag", joinColumns = @JoinColumn(name = "task_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private Set<Tag> tags;
 
-    // FIXME: UserTask.books' is 'mappedBy' another entity and may not specify the
-    // '@JoinTable'. Project does not start
-    @ManyToMany(mappedBy = "tasks")
+    @ManyToMany
     @JoinTable(name = "task_book", joinColumns = @JoinColumn(name = "task_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
     private Set<Book> books;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }
