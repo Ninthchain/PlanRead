@@ -1,5 +1,6 @@
 package com.professional.backend.infrastructure.data.model.entity.task;
 
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
