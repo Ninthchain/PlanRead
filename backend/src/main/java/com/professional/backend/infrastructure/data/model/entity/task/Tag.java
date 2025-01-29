@@ -1,6 +1,6 @@
 package com.professional.backend.infrastructure.data.model.entity.task;
 
-import java.util.Set;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,5 +27,5 @@ public class Tag {
     private String name;
 
     @ManyToMany(mappedBy = "tags")
-    private Set<UserTask> tasks;
+    private List<UserTask> tasks;
 }
