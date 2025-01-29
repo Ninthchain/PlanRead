@@ -15,6 +15,11 @@ import java.util.Set;
 public interface UserTaskRepository extends CrudRepository<UserTask, UUID> {
     UserTask findByName(String name);
     List<UserTask> findByTags(Set<Tag> tags);
+    /**
+     * Gets from db tasks with certain priority
+     * @param priority 
+     * @return A list of tasks with certain priority 
+     */
     List<UserTask> findByPriority(Priority priority);
     
 }
