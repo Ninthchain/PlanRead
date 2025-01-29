@@ -2,7 +2,8 @@ package com.professional.backend.infrastructure.data.model.entity.book;
 
 import java.util.Set;
 
-import com.professional.backend.infrastructure.data.model.entity.UserTask;
+import com.professional.backend.infrastructure.data.model.entity.User;
+import com.professional.backend.infrastructure.data.model.entity.Task;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -12,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,6 +40,10 @@ public class Book {
     @JoinColumn(name = "file_id", referencedColumnName = "id")
     private BookFile file;
 
-    @ManyToMany
-    private Set<UserTask> tasks;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToMany(mappedBy = "books")
+    private Set<Task> tasks;
 }
