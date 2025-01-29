@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import com.professional.backend.infrastructure.data.model.entity.book.Book;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,7 +35,7 @@ public class UserTask {
     @JoinColumn(name = "priority_id", referencedColumnName = "id")
     private Priority priority;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "tasks")
     @JoinTable(
         name = "task_tag",
         joinColumns = @JoinColumn(name = "task_id"),
@@ -41,4 +43,11 @@ public class UserTask {
     )
     private Set<Tag> tags;
     
+    @ManyToMany(mappedBy = "tasks")
+    @JoinTable(
+        name = "task_book",
+        joinColumns =  @JoinColumn(name = "task_id"),
+        inverseJoinColumns = @JoinColumn(name = "book_id")
+    )
+    private Set<Book> books;
 }

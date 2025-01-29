@@ -26,6 +26,6 @@ public class Tag {
     @Column
     private String name;
 
-    @ManyToMany(mappedBy = "tags")
+    @ManyToMany
     private List<UserTask> tasks;
 }
