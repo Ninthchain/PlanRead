@@ -1,4 +1,4 @@
-package com.professional.backend.infrastructure.data.model.entity.task;
+package com.professional.backend.infrastructure.data.model.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

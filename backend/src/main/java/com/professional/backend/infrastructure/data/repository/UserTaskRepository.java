@@ -5,9 +5,9 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import com.professional.backend.infrastructure.data.model.entity.task.Priority;
-import com.professional.backend.infrastructure.data.model.entity.task.Tag;
-import com.professional.backend.infrastructure.data.model.entity.task.UserTask;
+import com.professional.backend.infrastructure.data.model.entity.Priority;
+import com.professional.backend.infrastructure.data.model.entity.Tag;
+import com.professional.backend.infrastructure.data.model.entity.UserTask;
 
 import java.util.List;
 import java.util.Set;

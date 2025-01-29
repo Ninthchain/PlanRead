@@ -2,7 +2,7 @@ package com.professional.backend.infrastructure.data.model.entity.book;
 
 import java.util.Set;
 
-import com.professional.backend.infrastructure.data.model.entity.task.UserTask;
+import com.professional.backend.infrastructure.data.model.entity.UserTask;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

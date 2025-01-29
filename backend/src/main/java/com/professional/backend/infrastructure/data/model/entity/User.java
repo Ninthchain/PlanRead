@@ -1,4 +1,4 @@
-package com.professional.backend.infrastructure.data.model.entity.user;
+package com.professional.backend.infrastructure.data.model.entity;
 
 import java.util.UUID;
 
