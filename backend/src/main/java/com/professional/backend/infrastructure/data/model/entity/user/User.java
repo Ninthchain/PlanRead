@@ -1,10 +1,7 @@
 package com.professional.backend.infrastructure.data.model.entity.user;
 
-import java.sql.Timestamp;
 import java.util.Set;
 import java.util.UUID;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 import com.professional.backend.infrastructure.data.model.entity.book.Book;
 
