@@ -16,6 +16,11 @@ import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.Setter;
 
+
+/*
+ * TODO: Finish relationship between task and book entity. Now it's not working and causes runtime crash
+ * TODO: Finish relationship between user and book entity. 
+ */
 @Getter
 @Setter
 @Entity(name = "books")

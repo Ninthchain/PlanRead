@@ -42,6 +42,7 @@ public class UserTask {
     )
     private Set<Tag> tags;
     
+    // FIXME: UserTask.books' is 'mappedBy' another entity and may not specify the '@JoinTable'. Project does not start
     @ManyToMany(mappedBy = "tasks")
     @JoinTable(
         name = "task_book",
