@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Configuration
 public class AppConfig {
-    
+
     @Bean
     ObjectMapper customObjectMapper() {
         return new ObjectMapper();

@@ -35,19 +35,12 @@ public class UserTask {
     private Priority priority;
 
     @ManyToMany(mappedBy = "tasks")
-    @JoinTable(
-        name = "task_tag",
-        joinColumns = @JoinColumn(name = "task_id"),
-        inverseJoinColumns = @JoinColumn(name = "tag_id")
-    )
+    @JoinTable(name = "task_tag", joinColumns = @JoinColumn(name = "task_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private Set<Tag> tags;
-    
-    // FIXME: UserTask.books' is 'mappedBy' another entity and may not specify the '@JoinTable'. Project does not start
+
+    // FIXME: UserTask.books' is 'mappedBy' another entity and may not specify the
+    // '@JoinTable'. Project does not start
     @ManyToMany(mappedBy = "tasks")
-    @JoinTable(
-        name = "task_book",
-        joinColumns =  @JoinColumn(name = "task_id"),
-        inverseJoinColumns = @JoinColumn(name = "book_id")
-    )
+    @JoinTable(name = "task_book", joinColumns = @JoinColumn(name = "task_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
     private Set<Book> books;
 }

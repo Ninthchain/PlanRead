@@ -12,12 +12,11 @@ import lombok.Setter;
 @Setter
 @Entity
 public class Priority {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Short id;
 
-    
     @Column(name = "index")
     private Integer index;
 }
