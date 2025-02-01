@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Index;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +18,7 @@ import lombok.Setter;
 @Setter
 @Entity(name = "tags")
 @Table(indexes = @Index(columnList = "name", name = "name_idx"))
+@AllArgsConstructor
 public class Tag {
 
     @Id
