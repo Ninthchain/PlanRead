@@ -12,6 +12,6 @@ public class UserNotFoundException extends Exception {
     }
 
     public UserNotFoundException(UUID userId, String additionalExceptionInfo) {
-        super(String.format("The user with id: %s is not found.\n\t Additional info: \n\t\t %s", additionalExceptionInfo);
+        super(String.format("The user with id: %s is not found.\n\t Additional info: \n\t\t %s", additionalExceptionInfo));
     }
 }
