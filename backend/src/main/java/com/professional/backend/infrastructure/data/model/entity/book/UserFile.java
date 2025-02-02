@@ -6,15 +6,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity(name = "files")
-@AllArgsConstructor
-public class BookFile {
+@RequiredArgsConstructor
+public class UserFile {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -22,6 +22,10 @@ public class BookFile {
     @Lob
     private byte[] content;
 
+    @Column 
+    private String extensionName;
+
     @Column
     private String name;
+    
 }
