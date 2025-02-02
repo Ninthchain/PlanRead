@@ -1,13 +1,14 @@
 package com.professional.backend.infrastructure.data.model.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import java.util.UUID;
 
-@Getter
-@Setter
-@AllArgsConstructor
+import lombok.Data;
+@Data
 public class BookDto {
-    private Long Id;
+    
+    private Long id;
     private String name;
+    private String description;
+    
+    private UUID userId;
 }
