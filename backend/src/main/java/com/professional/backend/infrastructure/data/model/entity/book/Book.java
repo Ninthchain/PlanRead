@@ -26,7 +26,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity(name = "books")
-@AllArgsConstructor
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,7 +39,7 @@ public class Book {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "file_id", referencedColumnName = "id")
-    private BookFile file;
+    private UserFile file;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
