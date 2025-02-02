@@ -1,4 +1,4 @@
-package com.professional.backend.Exceptions;
+package com.professional.backend.exceptions;
 
 import java.util.UUID;
 
