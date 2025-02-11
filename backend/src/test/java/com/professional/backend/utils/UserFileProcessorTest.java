@@ -15,4 +15,12 @@ public class UserFileProcessorTest {
         
         assertEquals("pdf", UserFileProcessor.getExtensionName(filename));
     }
+    
+    @Test
+    public void getFilenameWithoutExtension() {
+        String filename = "hello.pdf";
+        
+        assertEquals("hello", UserFileProcessor.getFileNameWithoutExtension(filename));
+    }
+    
 }

@@ -3,6 +3,7 @@ package com.professional.backend.infrastructure.data.model.entity.book;
 import java.util.Set;
 
 import com.professional.backend.infrastructure.data.model.entity.User;
+import com.professional.backend.infrastructure.data.model.entity.UserFile;
 import com.professional.backend.infrastructure.data.model.entity.Task;
 
 import jakarta.persistence.CascadeType;
@@ -17,15 +18,15 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/*
- * TODO: Finish relationship between task and book entity. Now it's not working and causes runtime crash
- * TODO: Finish relationship between user and book entity. 
- */
+
 @Getter
 @Setter
 @Entity(name = "books")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -43,7 +44,7 @@ public class Book {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private User owner;
 
     @ManyToMany(mappedBy = "books")
     private Set<Task> tasks;
