@@ -20,18 +20,19 @@ public class BookDto implements Serializable {
     private String name;
     private String description;
 
-    private UUID userId;
-    
+    private Long ownerTelegramId;
+
     private List<UUID> tasks;
     private Long fileId;
-    
+
     public BookDto(Book book) {
-        
+
         List<UUID> tasks = book.getTasks().stream().map(task -> task.getId()).collect(Collectors.toList());
         this.setId(book.getId());
         this.setName(book.getName());
-        this.setUserId(book.getOwner().getId());
+        this.setOwnerTelegramId(book.getOwner().getTelegramId());
         this.setDescription(book.getDescription());
         this.setTasks(tasks);
+        this.setFileId(book.getFile().getId());
     }
 }

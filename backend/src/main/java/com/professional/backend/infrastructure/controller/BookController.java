@@ -13,6 +13,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,14 +21,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-
-
 
 @RestController
 @RequestMapping("/api/v1/books")
@@ -48,12 +47,12 @@ public class BookController {
             bookDtos.add(bookDto);
         }
         response = new ResponseEntity<List<BookDto>>(bookDtos, HttpStatus.OK);
-        
+
         return response;
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<BookDto> getBook(@RequestParam(name = "id") Long bookId) {
+    public ResponseEntity<BookDto> getBook(@PathVariable(name = "id") Long bookId) {
         ResponseEntity<BookDto> response;
         try {
             Book book = readerService.getBook(bookId);
@@ -65,15 +64,15 @@ public class BookController {
             return response;
         }
     }
-    
-    @RequestMapping(value = "/create", method=RequestMethod.POST, consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST, consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
     public ResponseEntity<String> createBook(@ModelAttribute BookCreationDto bookCreationDto) {
         try {
             readerService.createBook(bookCreationDto, bookCreationDto.getFile());
         } catch (NoSuchAlgorithmException | IOException e) {
-            
+
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        } catch(UserNotFoundException e) {
+        } catch (UserNotFoundException e) {
             System.out.println("Huy");
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
@@ -82,21 +81,29 @@ public class BookController {
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteBook(@RequestParam(name = "id") Long bookId) {
+    public ResponseEntity<String> deleteBook(@PathVariable(name = "id") Long bookId) {
         try {
             readerService.deleteBook(bookId, false);
-        } catch(IllegalStateException e) {
+        } catch (IllegalStateException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return new ResponseEntity<>("Successfuly deleted book", HttpStatus.OK);
     }
+
     @PutMapping("/edit/")
-    public String requestMethodName(@RequestBody BookModificationDto bookModificationDto) {
-        return new String();
+    public ResponseEntity<String> requestMethodName(@RequestBody BookModificationDto bookModificationDto) {
+        try {
+            readerService.changeBookInformation(bookModificationDto);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>("Successfuly changd book info", HttpStatus.OK);
     }
-    
+
 }

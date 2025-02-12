@@ -9,8 +9,8 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>bot</module>
     <module>backend</module>
+    <module>bot</module>
   </modules>
   <name>taskbook-root</name>
   <!-- FIXME change it to the project's website -->

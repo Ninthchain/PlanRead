@@ -46,6 +46,6 @@ public class Task {
     private Set<Book> books;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", referencedColumnName = "telegramId", nullable = false)
     private User owner;
 }

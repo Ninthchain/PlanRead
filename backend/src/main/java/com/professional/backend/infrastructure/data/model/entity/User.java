@@ -1,16 +1,11 @@
 package com.professional.backend.infrastructure.data.model.entity;
 
 import java.util.Set;
-import java.util.UUID;
-
 import com.professional.backend.infrastructure.data.model.entity.book.Book;
 
-import jakarta.persistence.Column;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,18 +20,12 @@ import lombok.Setter;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    private Long telegramId;
 
-    @Column(name = "telegram_username", nullable = false)
-    private String username;
-
-    @OneToMany
-    @JoinColumn(name = "book_id", referencedColumnName = "id", nullable = true)
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     private Set<Book> books;
 
-    @OneToMany
-    @JoinColumn(name = "task_id", referencedColumnName = "id", nullable = true)
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     private Set<Task> tasks;
 
 }

@@ -29,7 +29,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Book {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Long id;
 
     @Column
@@ -43,7 +43,7 @@ public class Book {
     private UserFile file;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", referencedColumnName = "telegramId", nullable = false)
     private User owner;
 
     @ManyToMany(mappedBy = "books")

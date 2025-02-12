@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.professional.backend.exceptions.UserNotFoundException;
@@ -19,7 +20,7 @@ import com.professional.backend.infrastructure.data.model.entity.UserFile;
 import com.professional.backend.infrastructure.data.model.entity.book.Book;
 import com.professional.backend.utils.UserFileProcessor;
 
-import jakarta.transaction.Transactional;
+
 
 import com.professional.backend.infrastructure.data.repository.BookRepository;
 
@@ -32,7 +33,7 @@ public class ReaderService {
     private BookRepository bookRepository;
 
     @Autowired
-    private StorageService userFileService;
+    private StorageService storageService;
 
     @Autowired
     private UserService userService;
@@ -46,8 +47,8 @@ public class ReaderService {
         Book book;
         String fileChecksum;
 
-        user = userService.getUser(dto.getUserId());
-        
+        user = userService.getUser(dto.getOwnerTelegramId());
+
         book = new Book();
         book.setName(dto.getName());
         book.setDescription(dto.getDescription());
@@ -56,23 +57,25 @@ public class ReaderService {
         fileChecksum = UserFileProcessor.getFileChecksum(entryFile.getBytes());
 
         try {
-            file = userFileService.getFile(fileChecksum);
+            file = storageService.getFile(fileChecksum);
         } catch (IllegalStateException e) {
-            file = new UserFile();
-            file.setChecksum(fileChecksum);
-            file.setContent(entryFile.getBytes());
-            file.setExtensionName(UserFileProcessor.getExtensionName(entryFile.getName()));
-            file.setName(UserFileProcessor.getFileNameWithoutExtension(entryFile.getName()));
+            storageService.uploadFile(entryFile);
+            file = storageService.getFile(fileChecksum);
         }
-
+        
         book.setFile(file);
         bookRepository.save(book);
+       
     }
-
+    
     public List<Book> getAllBooks() {
         return (List<Book>) bookRepository.findAll();
     }
-
+    
+    public List<Book> getAllBooksById(Iterable<Long> ids) {
+        return (List<Book>) bookRepository.findAllById(ids);
+    }
+    
     public Book getBook(Long bookId) throws IllegalStateException {
 
         Optional<Book> findBookQueryResult = bookRepository.findById(bookId);
@@ -111,7 +114,7 @@ public class ReaderService {
             return;
         }
 
-        bookFile = userFileService.getFile(fileId);
+        bookFile = storageService.getFile(fileId);
         book.setFile(bookFile);
     }
 
@@ -120,7 +123,7 @@ public class ReaderService {
         Book book = this.getBook(bookId);
 
         if (isDelitionWithFile == true) {
-            userFileService.deleteFile(book.getFile().getId());
+            storageService.deleteFile(book.getFile().getId());
         }
 
         bookRepository.deleteById(bookId);

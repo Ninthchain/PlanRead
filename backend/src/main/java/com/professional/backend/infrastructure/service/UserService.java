@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.professional.backend.exceptions.UserNotFoundException;
 import com.professional.backend.infrastructure.data.model.entity.User;
@@ -17,18 +18,33 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User getUser(UUID userId) throws UserNotFoundException {
+    public User getUser(Long userId) throws IllegalStateException {
         Optional<User> findUserQueryResult = userRepository.findById(userId);
         System.err.println("Huy user service");
-        if(!findUserQueryResult.isPresent()) {
-
-            throw new UserNotFoundException(userId);
+        if (!findUserQueryResult.isPresent()) {
+            // FIXME: Write error msg
+            throw new IllegalStateException();
         }
 
         return findUserQueryResult.get();
     }
 
+    public List<User> getAllUsers() {
+        return (List<User>) userRepository.findAll();
+    }
+
+    // public void appendLibrary(UUID userID, Long bookId) throws
+    // UserNotFoundException {
+    // User user = this.getUser(userID);
+
+    // userRepository.save(user);
+    // }
+
     public void createUser(User user) {
-        userRepository.save(user);
+       try {
+           this.getUser(user.getTelegramId());
+       } catch (IllegalStateException e) {
+            userRepository.save(user);
+       }
     }
 }
